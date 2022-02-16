@@ -2,28 +2,14 @@ import React, { Component } from 'react';
 import './Pokecard.css';
 
 
-  const POKE_API = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+//   const POKE_API = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+const POKE_API =  'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/'
 
-
-function paddingZero(id){
-   const numToString = String(id);
-   const paddedValue = Number(numToString.padStart(3, '0'));
-   return paddedValue;
-}
-
-function pokeImage (id) {
-    return `${POKE_API}${paddingZero(id)}.png`;
-}
-
-function randomPoke() {
-    return Math.floor(Math.random*898);
-}
-
-
+let paddingZero = (id) => (id <= 999 ? `00${id}`.slice(-3) : id)
 
 class Pokecard extends Component {
     render() {
-        let imgSRC = `${POKE_API}${this.props.id}.png`
+        let imgSRC = `${POKE_API}${paddingZero(this.props.id)}.png`
         return (
             <div className='Pokecard'>
                 <h1 className='Pokecard-title'>{this.props.name}</h1>
